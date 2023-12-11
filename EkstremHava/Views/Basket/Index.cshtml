@@ -1,0 +1,232 @@
+﻿@model EkstremHava.ViewModels.BasketViewModel
+
+<html>
+<head>
+    <title>Ürünler</title>
+    <link rel="stylesheet" href="~/css/product.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+@{
+    ViewData["Title"] = "Index";
+    ViewBag.Title = "Sepetim";
+    ViewData["cart-count"] = Model.ItemsInBasketCount;
+}
+<style>
+    .close1:hover {
+        color: orange; /* veya background-color: orange; */
+        cursor: pointer; /* Farenin üzerine geldiğinde el işareti gösterir */
+    }
+</style>
+
+    <h4 class="tittle-w3layouts my-lg-4 mt-3">Sepetiniz </h4>
+@* <script type="text/javascript">
+    async function deleteFromBasket(productId) {
+        try {
+            const response = await fetch(`/Basket/DeleteProductFromBasket/${productId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+
+                // İlgili HTML elemanını sayfadan kaldırabilirsiniz.
+                const removedElement = document.getElementById(`product-${productId}`);
+                removedElement.parentNode.removeChild(removedElement);
+
+                const basketTotalElement = document.getElementById('cart-total');
+                basketTotalElement.innerText = data.BasketTotal;
+
+                    // Sepetteki ürün sayısını güncelle
+                const quantityInBasketElement = document.getElementById(`cart-quantity-${productId}`);
+                quantityInBasketElement.innerText = data.QuantityOfProductBasket;
+
+              
+
+                console.log(data.Message);
+                console.log('Basket Total:', data.BasketTotal);
+                console.log('Quantity of Product in Basket:', data.QuantityOfProductBasket);
+                console.log('Quantity of Related Product:', data.QuantityOfRelatedProduct);
+                console.log('Deleted Product Id:', data.DeletedOfProductId);
+            } else {
+                console.error('Ürün silme hatası:', response.statusText);
+            }
+        } catch (error) {
+            console.error('İstek hatası:', error);
+        }
+    }
+</script>
+ *@
+@* <script type="text/javascript">
+            async function addToBasket(productId) {
+                // Formu submit et
+                const response = await fetch(`/Basket/AddProductToBasket/${productId}`);
+                const data = await response.json();
+                console.log(data);
+</script> *@
+
+
+
+
+@* <script type="text/javascript">
+            async function deleteToBasket(productId) {
+                // Formu submit et
+                    const response = await fetch(`/Basket/DeleteProductFromBasket/${productId}`);
+                const data = await response.json();
+                console.log(data);
+ </script> *@
+
+@* <script type="text/javascript">
+
+    function is1 () {
+        // Get the id from the link
+        var recordToDelete = $(this).attr("data-id");
+        if (recordToDelete != '') {
+            // Perform the ajax post
+            $.post("/Basket/DeleteProductFromBasket", { "id": recordToDelete },
+                function (data) {
+
+                    // Successful requests get here
+                    // Update the page elements
+                    if (data.quantityOfRelatedProduct == 0) {
+                        $('#row-' + data.deletedOfProductId).fadeOut('slow');
+                    } else {
+                        $('#item-count-' + data.deletedOfProductId).text(data.quantityOfRelatedProduct);
+                    }
+                    // $('#cart-total').text(data.totalBasket);
+                    $('#cart-count').text(data.quantityOfProductBasket);
+                    $('#update-message').text(data.message);
+                    $('#cartInfo').text('Cart: (' + data.quantityOfProductBasket + ')');
+                });
+        }
+    }
+
+    $(function () {
+        // Document.ready -> link up remove event handler
+        $(".RemoveLink").click(is1);
+    });
+</script> 
+
+
+@* <script type="text/javascript">
+    // Sayfa yüklendiğinde sepet sayısını güncelle
+    document.addEventListener("DOMContentLoaded", function () {
+        updateCartCount();
+    });
+
+    // Sepet güncellendiğinde sepet sayısını güncelle
+    function updateCartCount() {
+        var cartCountElement = document.getElementById("cart-count");
+        if (cartCountElement) {
+            // Sepet sayısını Model'den alınan değerle güncelle
+            cartCountElement.textContent = @Html.Raw(Json.Serialize(Model.ItemsInBasketCount));
+        }
+    }
+</script> *@
+
+    <script>
+        // Sayfa yüklendiğinde kontrolü gerçekleştir
+        document.addEventListener("DOMContentLoaded", function () {
+            checkBasketCount();
+        });
+
+        // Sepet güncellendiğinde kontrolü gerçekleştir
+        function checkBasketCount() {
+            var cartCount = @ViewData["cart-count"];
+            var continueButton = document.getElementById("continue-button");
+
+            // Sepette ürün varsa veya sayı 0 değilse devam et butonunu aktif yap
+            if (cartCount > 0) {
+                continueButton.classList.remove("disabled");
+            } else {
+                continueButton.classList.add("disabled");
+            }
+        }
+    </script>
+
+    <style>
+        #continue-button.disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }</style>
+    
+
+</head>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Navbar -->
+        
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <!-- ... Diğer menü öğeleri ... -->
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+   @*  <section class="banner-bottom-wthreelayouts py-lg-5 py-3"> *@
+        <div class="container">
+            <div class="inner-sec-shop px-lg-4 px-3">
+                
+                <div class="checkout-right">
+                    <h4>Sepetinizde toplam @ViewData["cart-count"] adet ürün bulunmaktadır</h4>
+                    <table class="timetable_sub">
+                        <thead>
+                            <tr>
+                                
+                                <th>Ürün</th>
+                                <th>Adet</th>
+                                <th>Ürün Adı</th>
+                                <th>Tutar</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (BasketInfo item in Model.BasketItems)
+                            {
+                                <tr class="rem1">
+            
+                                    <td class="invert-image">
+                                        <a href="/Product/Detail/@item.ProductId">
+                                            <img src="/img/@item.Product.ImageFileName" alt=" " class="img-responsive">
+                                        </a>
+                                    </td>
+                                    <td class="invert">
+                                        <div class="quantity">
+                                            <div class="quantity-select">
+                                                <a class="entry value-minus" href="/Basket/DeleteProductFromBasket/@item.ProductId">&nbsp;</a>
+                                                <div class="entry value">
+                                                    <span id="cart-quantity-@item.ProductId">@item.Quantity</span>
+                                                </div>
+                                                <a class="entry value-plus active" href="/Basket/AddProductToBasket/@item.ProductId">&nbsp;</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="invert">@item.Product.Name</td>
+                                    <td class="invert">@item.Product.Price TL</td>
+                                    
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    <div class="col-md-4 checkout-left-basket">
+                        <h4>Toplam Tutar: <span id="cart-total">@Model.BasketTotal TL</span></h4>
+                    </div>
+
+
+                <div class="checkout-right-basket">
+                    <a id="continue-button" href="/Payment/AddressAndPayment">Devam Et</a>
+                </div>
+                    </div>
+
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</html>

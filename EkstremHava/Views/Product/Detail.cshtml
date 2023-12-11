@@ -1,0 +1,115 @@
+﻿@model EkstremHava.Models.Product
+
+
+<html>
+
+<head>
+@{
+    ViewData["Title"] = "Detaylar";
+}
+
+<h3>Detaylar</h3>
+
+    <style>
+        /* Stil örnekleri, ihtiyacınıza göre düzenleyebilirsiniz */
+        .button-style {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: black; /* Yeşil renk örneği */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+            .button-style:hover {
+                background-color:#1a1a1a;
+            }
+
+        .go-back-button {
+            margin-top: 15px; /* Görünümü düzenlemek için örnek bir üst boşluk */
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 1, 1, 0.5);
+            max-width: 300px; /* Maksimum genişlik değeri */
+            margin: 0 auto; /* Resmi ortalamak için */
+        }
+
+            .image-container img {
+                width: auto;
+                height: auto;
+                display: block;
+                margin: 2px auto;
+            }
+
+        
+    </style>
+
+
+@* <script type="text/javascript">
+    async function addToBasket(productId) {
+        // Formu submit et
+        const response = await fetch(`/Basket/AddProductToBasket/${productId}`);
+        const data = await response.json();
+        console.log(data);
+</script> *@
+
+</head>
+
+<body>
+
+<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
+    <div class="container">
+        <div class="inner-sec-shop pt-lg-4 pt-3">
+            <div class="row">
+                <div class="col-lg-4 single-right-left ">
+                    <div class="grid images_3_of_2">
+                        <div class="flexslider1">
+                                <div class="thumb-image image-container">
+                                 <img src="/img/@Model.ImageFileName" data-imagezoom="true" class="img-fluid" alt=" ">
+                             </div>
+ 
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 single-right-left simpleCart_shelfItem">
+                    <h3>@Model.Name</h3>
+                    <p><span class="item_price">@Model.Price TL</span></p>
+                    <div class="Açıklama">
+                        <hr/>
+                        
+                            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Description)</dt>
+                            <dd class="col-sm-10">@Html.DisplayFor(model => model.Description)</dd>
+                            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Type)</dt>
+                            <dd class="col-sm-10">@Html.DisplayFor(model => model.Type.ProductTypeName)</dd>
+                       
+                        <hr/>
+                    </div>
+
+                        <a href="/Basket/AddProductToBasket/@Model.ProductId" class="button-style">
+                            Sepete Ekle
+                        </a>
+
+                        <div
+                            class="go-back-button">
+                            <a asp-action="Index" class="button-style">
+                            Geri Dön
+                            </a>
+                        </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
+
+
+

@@ -1,0 +1,124 @@
+﻿@model EkstremHava.ViewModels.FavoriteViewModel
+<html>
+<head>
+    <title>Ürünler Sayfası</title> 
+    <link rel="stylesheet" href="~/css/product.css" /> 
+
+
+  @*   <script type="text/javascript">
+
+        function is1() {
+            // Get the id from the link
+            var recordToDelete = $(this).attr("data-id");
+            if (recordToDelete != '') {
+                // Perform the ajax post
+                $.post("/Basket/AddProductToBasket", { "id": recordToDelete },
+                    function (data) {
+
+                        // Successful requests get here
+                        // Update the page elements
+                        if (data.quantityOfRelatedProduct == 0) {
+                            $('#row-' + data.addOfProductId).fadeOut('slow');
+                        } else {
+                            $('#item-count-' + data.addOfProductId).text(data.quantityOfRelatedProduct);
+                        }
+                        // $('#cart-total').text(data.totalBasket);
+                        $('#cart-count').text(data.quantityOfProductBasket);
+                        $('#update-message').text(data.message);
+                        $('#cartInfo').text('Cart: (' + data.quantityOfProductBasket + ')');
+                    });
+            }
+        }
+
+        $(function () {
+            // Document.ready -> link up remove event handler
+            $(".AddLink").click(is1);
+        });
+    </script>
+
+    <script type="text/javascript">
+
+        function is2() {
+            // Get the id from the link
+            var recordToDelete = $(this).attr("data-id");
+            if (recordToDelete != '') {
+                // Perform the ajax post
+                $.post("/Favorite/RemoveProductFromFavorite", { "id": recordToDelete },
+                    function (data) {
+
+                        $('#row-' + data.removeProductFromFavoriteId).fadeOut('slow');
+                    });
+            }
+        }
+
+        $(function () {
+            // Document.ready -> link up remove event handler
+            $(".RemoveLink").click(is2);
+        });
+    </script> *@
+
+<script type="text/javascript">
+		async function removeToBasket(productId) {
+			// Formu submit et
+            const response = await fetch(`/Favorite/RemoveProductFromFavorite/${productId}`);
+			const data = await response.json();
+			console.log(data);
+
+</script>
+
+@{
+    ViewData["Title"] = "FavoriteProduct";
+}
+</head>
+<body>
+<h2>Favori Ürünleriniz</h2> <br/>
+
+    
+    <div class="popular-products-container">
+        <div class="product-container row">
+            @foreach (var item in Model.FavoriteItems)
+            {
+                <div class="col-md-3 product-men women_two">
+                    <div class="product-googles-info googles">
+                        <div class="men-pro-item">
+                            <div class="men-thumb-item">
+                                <img src="/img/@item.Product.ImageFileName" height="200" width="100" class="product-image" alt="Ürün Resmi">
+                                <div class="men-cart-pro">
+                                    <div class="inner-men-cart-pro">
+                                        <a href="/Product/Detail/@item.Product.ProductId" class="link-product-add-cart">Detaylar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-info-product">
+                                <div class="info-product-price">
+                                    <div class="grid_meta">
+                                        <div class="product_price">
+                                            <h4>
+                                                <a href="single.html">@item.Product.Name</a>
+                                            </h4>
+                                            <div class="grid-price mt-2">
+                                                <span class="money">@Html.DisplayFor(model => item.Product.Price) TL</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="googles single-item hvr-outline-out">
+                                        <form id="addToBasketForm" action="AddProductToBasket" method="post">
+                                            <input type="hidden" name="googles_item" value="@item.Product.Name">
+                                            <input type="hidden" name="amount" value="@item.Product.Price">
+                                            <a type="button" class="googles-cart pgoogles-cart" href="/Favorite/RemoveProductFromFavorite/@item.Product.ProductId">
+                                                <span>Favorilerden Çıkar</span>
+                                            </a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</body>
+</html>

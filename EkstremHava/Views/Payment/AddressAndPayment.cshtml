@@ -1,0 +1,84 @@
+﻿@model EkstremHava.Models.Order
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<!DOCTYPE html>
+
+<h4> Lütfen Teslimat Bilgilerini Giriniz </h4>
+<br />
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Lütfen Teslimat Bilgileri</title>
+
+
+</head>
+
+
+
+<body>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="AddressAndPayment" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div> @*ModeOnly yerine All yapılabilir*@
+        <div class="form-group">
+            <label asp-for="Name" class="control-label">İsim</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Surname" class="control-label">Soyisim</label>
+            <input asp-for="Surname" class="form-control" />
+            <span asp-validation-for="Surname" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="City" class="control-label">Şehir</label>
+            <input asp-for="City" class="form-control" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PhoneNumber" class="control-label">Telefon Numarası</label>
+            <input asp-for="PhoneNumber" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="DeliveryAddress" class="control-label">Teslimat Adresi</label>
+            <input asp-for="DeliveryAddress" class="form-control" />
+            <span asp-validation-for="DeliveryAddress" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Adresi Onayla" class="btn btn-primary" />
+        </div>
+    </form>
+        </div>
+    </div>
+
+   @*  @using (Html.BeginForm())
+    {
+
+        <h2>Address And Payment</h2>
+        <fieldset>
+            <legend>Shipping Information</legend>
+            @Html.EditorForModel()
+        </fieldset>
+        <fieldset>
+            <legend>Payment</legend>
+            <p>
+                We're running a promotion: all music is free
+                with the promo code: "FREE"
+            </p>
+        </fieldset>
+
+        <input type="submit" value="Submit Order" />
+    }
+ *@
+
+</body>
+</html>

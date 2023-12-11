@@ -1,0 +1,68 @@
+
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin: 10px; 
+        margin-bottom: 20px;
+    }
+
+    .product-box {
+        width: calc(10% - 10px); 
+        margin: 55px; 
+        padding: 20px;
+        border: 3px solid #cba;
+        border-radius: 10px; 
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom:50px;
+        display: flex;
+        flex-direction: column;
+        height: 250px;
+        width: 250px;
+    }
+
+    .product-title {
+        font-weight: bold;
+        flex-grow: 1;
+    }
+
+    .product-link {
+        text-decoration: none;
+    
+    }
+
+    .product-link:hover {
+            color: #778899; 
+    }
+
+
+    .product-link-container {
+        display: flex;
+        justify-content: center; 
+        margin-top: 10px; 
+    }
+
+    .popular-products-title {
+        text-align: center;
+        font-size: 24px;
+        margin: 35px 10px;
+        font-weight: bold; 
+        margin-top: 10px;
+        color: #cc110a;
+    }
+
+
+.add-to-favorites-link {
+    color: black;
+    text-align: center;
+}
+.add-to-favorites-link i:hover {
+    color: #ff4e00; /* Türuncu renk */
+
+}
+    .popular-products-container {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+

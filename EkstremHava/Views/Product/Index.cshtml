@@ -1,0 +1,222 @@
+﻿@model EkstremHava.ViewModels.ProductFilterViewModel
+
+
+@ViewBag.basketCount
+
+<html>
+<head>
+    <title>Ürünler</title> 
+    <link rel="stylesheet" href="~/css/hproduct.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> <!-- jQuery kütüphanesi -->
+     @* <script src="~/js/favorite.js/"></script> *@
+
+<script type="text/javascript">
+		async function addToBasket(productId) {
+			// Formu submit et
+			const response = await fetch(`/Basket/AddProductToBasket/${productId}`);
+			const data = await response.json();
+			console.log(data);
+
+			/** 
+			 * 1. Önce servisten Json Response döndür. örn: success: true;
+			 * 2. Gelen objeyi kontrol et. success: true mu değil mi?
+			 * 3. success true ysa sepet quantitysini hesaplayan fonksiyonu çağır ya da kullan ve başarılı mesajı göster.
+			 * 4. success false sa kullanıcı alertle başarısız cevabı göster.
+			 */
+		// 	if (data.success) {
+		// 		// Başarılı işlem
+		// 		GetProductCountFromBasket();
+		// 		alert('Ürün sepete eklendi!');
+		// 	} else {
+		// 		// Başarısız işlem
+		// 		alert('Ürün sepete eklenemedi.');
+		// 	}
+		// } catch (error) {
+		// 	console.error('Hata oluştu:', error);
+		// 	alert('Bir hata oluştu. Lütfen tekrar deneyin.');
+		// }
+		// 			}
+
+		// // Sepet quantity'sini hesaplayan fonksiyon
+		// function GetProductCountFromBasket() {
+		// 	// Hesaplama kodunu buraya ekleyin veya sepet bilgilerini güncelleyen başka bir fonksiyonu çağırın
+		// 	console.log('Sepet quantity hesaplandı.');
+		// }
+		}
+</script>
+
+
+	<script type="text/javascript">
+		async function addToFavorites(productId) {
+            // AJAX ile sunucuya istek göndererek favorilere ekleme işlemini yapabilirsiniz.
+			const response = await fetch(`/Favorite/AddProductToFavorite/${productId}`);
+			const data = await response.json();
+			console.log(data);
+
+            $.post("/Favorite/AddProductToFavorite/" + productId, function (data) {
+                alert(data.Message); // İşlem başarılı mesajı
+
+                // Sayfa yenilenmesini engelle
+                event.preventDefault();
+            });
+        }
+    </script>
+
+
+
+</head>
+<body>
+    <h2>Ürünler</h2> 
+
+@*     @using (Html.BeginForm("Filtrele", "Urunler", FormMethod.Post))
+    {
+        <label for="tur">Tür:</label>
+        <select name="tur" id="tur">
+            <option value="">Hepsi</option>
+            <option value="Tablo">Tablo</option>
+            <option value="Sensör">Sensör</option>
+            <option value="Kitap">Kitap</option>
+            <!-- Diğer türler... -->
+        </select>
+        <input type="submit" value="Filtrele" /> 
+    }
+    <br/>
+    <br/> *@
+<style>
+
+ form {
+    flex-direction: column;
+
+}
+
+label {
+    font-weight: bold;
+}
+
+ 
+     button[type="submit"] {
+     
+     height: 45px;
+              
+}
+
+
+button[type="submit"]:hover {
+     background-color: #575c61; /* İstenilen hover rengini belirleyin */
+}
+            
+    </style>
+
+    <form asp-action="Index" method="get">
+    <label for="selectedType">Ürün Türü Seç:</label>
+        <select asp-for="SelectedTypeId" asp-items="Model.Types">
+        <option value="">Tüm Türler</option>
+    </select>
+        <button type="submit">Filtrele</button>
+    </form> 
+    @if (Model.SelectedTypeId != 0)
+    {
+        <a class="back" href="/Product/Index/"><strong>Geri Dön</strong></a>
+        <br/>
+      
+    }
+
+
+    <br />
+
+
+    <div class="popular-products-container">
+        <div class="product-container row">
+            @foreach (var product in Model.Products)
+            {
+                <div class="col-md-3 product-men women_two">
+                    <div class="product-googles-info googles">
+                        <div class="men-pro-item">
+                            <div class="add-to-favorites">
+                                <a href="#" onclick="addToFavorites('@product.ProductId')" class="add-to-favorites-link" title="Favorilere Ekle">
+                                    <i class="fas fa-heart"></i>
+                                </a>
+                            </div>
+                            <div class="men-thumb-item">
+                                <img src="/img/@product.ImageFileName" height="200" width="100" class="product-image" alt="Ürün Resmi">
+                                <div class="men-cart-pro">
+                                    <div class="inner-men-cart-pro">
+                                        <a href="/Product/Detail/@product.ProductId" class="link-product-add-cart">Detaylar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-info-product">
+                                <div class="info-product-price">
+                                    <div class="grid_meta">
+                                        <div class="product_price">
+                                            <h4>
+                                                <a href="">@product.Name</a>
+                                            </h4>
+                                            <div class="grid-price mt-2">
+                                                <span class="money">@Html.DisplayFor(model => product.Price) TL</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="googles single-item hvr-outline-out">
+                                        <form id="addToBasketForm" action="AddProductToBasket" method="post">
+                                            <input type="hidden" name="googles_item" value="@product.Name">
+                                            <input type="hidden" name="amount" value="@product.Price">
+                                            <button type="button" class="googles-cart pgoogles-cart" onclick="addToBasket(@product.ProductId)">Sepete Ekle
+                                                <i class="fas fa-cart-plus"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    @*  <div class="popular-products-container">
+        <div class="product-container"> *@
+            @* @foreach (var product in Model)
+            {
+                <div class="product-box"> *@
+                    @* <img src="@product.ImageUrl" class="product-image" alt="Ürün Resmi"> *@
+                    @*  <img src="\img\@product.ImageFileName" height="125" class="product-image" alt="Ürün Resmi">
+					<p class="product-title">@product.Name</p>
+                    <div class="product-link-container">
+                        <a href="/Product/Detail/@product.ProductId" class="product-link">İncele</a> *@
+
+                        @* <a href="" onclick="addToFavorites('@product.ProductId')" class="heart-icon" title="Favorilere Ekle">&#10084;</a> *@
+
+                        @* <a href="#" onclick="addToFavorites('@product.ProductId')" class="add-to-basket-link" title="Favorilere Ekle">Favorilere Ekle</a> *@
+
+                        @* <a href="#" @product.ProductId class="add-to-basket-link">Sepete Ekle</a> *@
+
+                       @*  <a href="#" class="add-to-basket-link" onclick="addToBasket(@product.ProductId)">Sepete Ekle</a> *@
+
+
+ 
+						@* <i>
+							@Html.ActionLink("Sepete Ekle", "AddProductToBasket", "Basket", new { ProductId = product.ProductId, area = "" }, new { @class = "add-to-basket-link" })
+						</i>
+ 
+						 <a href="@Url.Action("AddProductToBasket", "Basket", new { ProductId = product.ProductId, area = "" })" class="add-to-basket-link">
+							
+						</a>  *@
+
+                        @*
+                         Cart area'sındaki Home controller'ının AddToCart action'ına ürünün id'sini (productId) route value,
+                        area'yı da Cart olarak belirterek link'i oluşturuyoruz
+                         *@
+
+
+@* 
+                    </div>
+                    
+                </div>
+
+            }
+        </div> *@
+   @*  </div> *@
+</body>
+</html>

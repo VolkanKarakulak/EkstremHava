@@ -1,0 +1,45 @@
+﻿@model EkstremHava.Models.ProductType
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+
+<h4>Düzenle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductTypeId" />
+            <div class="form-group">
+                <label asp-for="ProductTypeId" class="control-label">Ürün Türü Seç</label>
+                <select asp-for="ProductTypeId" class="form-control" asp-items="ViewBag.ProductTypeId"></select>
+                <span asp-validation-for="ProductTypeId" class="text-danger"></span>
+            </div>
+            @* div class="form-group">
+                <label asp-for="ProductTypeName" class="control-label"></label>
+                <input asp-for="ProductTypeName" class="form-control"/>
+                <span asp-validation-for="ProductTypeName" class="text-danger"></span>
+            </div *@
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Geri Dön</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

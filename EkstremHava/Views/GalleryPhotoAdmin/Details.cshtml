@@ -1,0 +1,41 @@
+﻿@model EkstremHava.Models.GalleryPhoto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div>
+    <h4>Detaylar</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhotoName)
+        </dt>
+        <dd class = "col-sm-10">
+            <img src="/img/@Model.PhotoName" height="125">
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LocationName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LocationName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.GalleryPhotoId">Düzenle</a> |
+    <a asp-action="Index">Geri Dön</a>
+</div>

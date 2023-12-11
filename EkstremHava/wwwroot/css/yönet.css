@@ -1,0 +1,41 @@
+﻿
+/* Yeşil çerçeve */
+a.edit-link {
+    color: black;
+    border: 1px solid green;
+    padding: 5px;
+    margin-right: 5px;
+    text-decoration: none;
+    background-color: green;
+}
+
+/* Gri çerçeve */
+a.details-link {
+    color: black;
+    border: 1px solid gray;
+    padding: 5px;
+    margin-right: 5px;
+    text-decoration: none;
+    background-color:gray;
+}
+
+/* Kırmızı çerçeve */
+a.delete-link {
+    color: black;
+    border: 1px solid red;
+    padding: 5px;
+    text-decoration: none;
+    background-color: #e00808;
+}
+a.edit-link:hover {
+    background-color: #3ec02d; /* İstenen hover rengi */
+}
+
+a.details-link:hover {
+    background-color: darkgray; /* İstenen hover rengi */
+}
+
+a.delete-link:hover {
+    background-color: #f15151; /* İstenen hover rengi */
+}
+

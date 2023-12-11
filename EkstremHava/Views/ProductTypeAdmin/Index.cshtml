@@ -1,0 +1,43 @@
+﻿@model IEnumerable<EkstremHava.Models.ProductType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/yönet.css" />
+
+<h4>Ürün Türü Yönet</h4> <br/>
+
+<p>
+    <a asp-action="Create" style="color: orange; font-weight: bold; font-size:18px;">Yeni Oluştur</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductTypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductTypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProductTypeId" class="edit-link">Düzenle</a> |
+                    <a asp-action="Details" asp-route-id="@item.ProductTypeId" class="details-link">Detaylar</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProductTypeId" class="delete-link">Sil</a>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,114 @@
+﻿
+h3 {
+    margin-bottom: 20px; /* İstediğiniz boşluk miktarını ayarlayın */
+}
+
+.photo-info h5,
+.photo-info p {
+    font-weight: bold; /* Yazı tiplerini kalın yapın */
+
+    margin: 5px 0; /* Her bir yazı tipi arasına bir miktar boşluk bırakın */
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.col-md-3 {
+    flex: 0 0 25%;
+    max-width: 20%;
+    padding: 10px; /* Her kutu arasına boşluk bırak */
+    margin-top: 20px;
+}
+
+.card {
+    /* İstenilen yükseklik değeri */
+    overflow: hidden;
+}
+
+    .card img {
+        width: 100%;
+        height: auto;
+        object-fit: cover; /* Resmin orantılı şekilde sığmasını sağlar */
+    }
+
+#images {
+    text-align: center; /* İçeriği yatay olarak ortala */
+}
+
+.photo-info {
+    padding: 10px;
+    text-align: left;
+}
+
+.image-container {
+    display: inline-block; /* Resimleri yanyana sırala */
+    margin: 10px; /* Resimler arasında boşluk bırak */
+    text-align: center; /* İçeriği yatay olarak ortala */
+    margin-bottom: 20px
+}
+
+.image-caption {
+    background-color: rgba(0, 0, 0, 0.5); /* Arka plan rengi ayarla (isteğe bağlı) */
+    color: white; /* Metin rengini ayarla (isteğe bağlı) */
+    padding: 5px; /* Kenar boşluğunu ayarla (isteğe bağlı) */
+    font-size: 14px;
+}
+
+.enlarge-image {
+    position: fixed;
+    top: 47%;
+    left: 50%;
+    transform: translate(-70%, -50%);
+   /* background-color:*/
+    padding: 20px;
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);*/
+    z-index: 2;
+    display: none;
+}
+
+.close-button {
+    position: relative;
+    top: 32px;
+    right: -88.7%;
+    cursor: pointer;
+    font-size: 100%; /* Font boyutunu ayarla */
+    font-weight: bold; /* Kalınlığını artır */
+    color: #fff; /* Metin rengini beyaz yap */
+    background-color: #2b2828; /* Arka plan rengini koyu gri yap */
+    padding: 4px 8px; /* İç boşluğu ayarla */
+    border-radius: 3px; /* Köşeleri yuvarla */
+}
+
+
+.image-container:hover .enlarge-button {
+    display: block;
+}
+
+.enlarge-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    display: none;
+}
+
+.image-container:hover .enlarge-button {
+    display: block;
+}
+
+.enlarge-button:hover {
+    text-decoration: underline;
+}
+
+.enlarge-image img {
+    width: 140%;
+    height: auto;
+}
+

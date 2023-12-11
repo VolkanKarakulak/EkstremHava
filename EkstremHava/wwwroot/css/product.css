@@ -1,0 +1,108 @@
+
+/* Ürün kutusu stilleri */
+.product-container row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 15px; /* Kutular arasındaki boşluğu azaltmak için negatif marjin ekleyin */
+}
+
+.add-to-favorites {
+    position: relative;
+    padding: 0;
+    text-decoration: none;
+    display: inline-block;
+    display: block;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+/*.add-to-favorites-link {
+    color:black;
+    
+}
+    .add-to-favorites-link i:hover {
+        color: #ff4e00;*/ /* Türuncu renk */
+    /*}*/
+
+.product-box:hover .add-to-favorites {
+    display: block; /* Mause üzerine gelindiğinde görünür */
+}
+
+
+.product-box {
+    position: relative;
+    width:  220px; /* Her ürün kutusunun genişliği ve kutular arasındaki boşluğu hesaba katar */
+    margin: 25px; /* Her iki kutu arasındaki yatay boşluk */
+    padding: 15px;
+    border: 3px solid black;
+    border-radius: 10px; /* Köşeleri oval yapma */
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    height: 220px;
+}
+
+.add-to-basket-container {
+    text-align: center;
+    
+}
+
+.add-to-basket-link {
+    text-align:center;
+    background-color: #ADD8E6; /* Varsayılan bir renk, ihtiyacınıza göre değiştirilebilir */
+    color: black; /* Varsayılan bir renk, ihtiyacınıza göre değiştirilebilir */
+    padding: 8px;
+    text-decoration: none;
+    display: inline-block;
+    display: block;
+    margin-top: 50px;
+    margin-bottom: 80px;
+   
+}
+    .add-to-basket-link:hover {
+        color: #778899;
+      
+    }
+
+.product-title {
+    font-weight: bold;
+    flex-grow: 1; /* Başlık alanının büyümesine izin vermek için */
+}
+
+/* .product-image {
+                    max-width: 100%;
+                    height: auto;
+                } */
+
+.product-link {
+    text-decoration: none;
+     /* Bağlantı rengi */
+}
+
+    .product-link:hover {
+        color: #778899; /* Üzerine gelindiğinde renk değiştirme */
+    }
+
+
+.product-link-container {
+    display: flex;
+    justify-content: center; /* İncele bağlantısını yatayda ortala */
+    margin-top: 10px; /* İncele bağlantısını üstte biraz mesafe eklenmiştir */
+}
+
+.popular-products-title {
+    text-align: center;
+    font-size: 24px;
+    margin: 50px 10px;
+    font-weight: bold; /* Yazıyı kalın yapma */
+    margin-top: 40px;
+    color: #cc110a;
+}
+
+.popular-products-container {
+    text-align: center;
+    margin-bottom: 25px;
+}
+

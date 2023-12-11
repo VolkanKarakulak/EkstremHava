@@ -1,0 +1,96 @@
+﻿@model IEnumerable<EkstremHava.Models.GalleryPhoto>
+
+@ViewBag.basketCount
+
+<html>
+
+<head>
+    <title>Galeri</title>
+   @*  <link rel="stylesheet" href="~/css/product.css" /> *@
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> <!-- jQuery kütüphanesi -->
+    @* <script src="~/js/favorite.js/"></script> *@
+
+     <link rel="stylesheet" href="~/css/gallery.css" />
+
+</head>
+<body>
+    <h3>Kaydedilen Ekstrem Hava Olayları</h3>
+    <div class="row">
+        @foreach (var photo in Model)
+        {
+            <div class="col-md-3 image-container">
+                <div class="card">
+                    <img src="/img/@photo.PhotoName" class="card-img-top" alt="...">
+                    <div class="enlarge-button" onclick="showEnlarged('@photo.PhotoName')">Büyüt</div>
+                    <div class="enlarge-image">
+                        <span class="close-button" onclick="closeEnlargedImage()">&times;</span>
+                        <img src="/img/@photo.PhotoName" class="card-img-top" alt="...">
+                    </div>
+                </div>
+                <div class="photo-info">
+                    <h5 class="card-text">@photo.Description</h5>
+                    <p class="card-text">Tarih: @photo.Date.ToShortDateString()</p>
+                    <p class="card-text">Konum: @photo.LocationName</p>
+                </div>
+            </div>
+        }
+    </div>
+
+    <script>
+        function showEnlarged(photoName) {
+            var enlargedImage = document.querySelector('.enlarge-image');
+
+            enlargedImage.querySelector('img').src = "/img/" + photoName;
+
+            enlargedImage.style.display = 'block';
+        }
+
+        function closeEnlargedImage() {
+            document.querySelector('.enlarge-image').style.display = 'none';
+        }
+    </script>
+ 
+
+@* div id="images">
+    <div class="image-container">
+        <img src="~/img/h2.jpeg" alt="Açıklama" width="206" height="165">
+        <div class="enlarge-image">
+            <img src="~/img/h2.jpeg" alt="Açıklama" width="612" height="365">
+        </div>
+        <div class="image-caption"><strong>Yıldırım</strong></div>
+    </div>
+
+    <div class="image-container">
+        <img src="~/img/kasirga.jpg" alt="Açıklama" width="206" height="165">
+        <div class="enlarge-image">
+            <img src="~/img/kasirga.jpg" alt="Açıklama" width="612" height="365">
+        </div>
+        <div class="image-caption"><strong>Kasırga</strong></div>
+    </div>
+
+    <div class="image-container">
+        <img src="~/img/volkan.jpg" alt="Açıklama" width="206" height="165">
+        <div class="enlarge-image">
+            <img src="~/img/volkan.jpg" alt="Açıklama" width="612" height="365">
+        </div>
+        <div class="image-caption"><strong>Volkanik Patlama</strong></div>
+    </div>
+
+    <div class="image-container">
+        <img src="~/img/kü.jpg" alt="Açıklama" width="206" height="165">
+        <div class="enlarge-image">
+            <img src="~/img/kü.jpg" alt="Açıklama" width="612" height="365">
+        </div>
+        <div class="image-caption"><strong>Kümülonimbus Bulutu</strong></div>
+    </div>
+
+    <div class="image-container">
+        <img src="~/img/hortum.jpg" alt="Açıklama" width="206" height="165">
+        <div class="enlarge-image">
+            <img src="~/img/hortum.jpg" alt="Açıklama" width="612" height="365">
+        </div>
+        <div class="image-caption"><strong>Hortum</strong></div>
+    </div>
+</div> *@
+</body>
+</html>

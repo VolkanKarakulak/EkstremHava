@@ -1,0 +1,105 @@
+﻿@inject EkstremHava.Data.ApplicationDbContext context
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ekstrem Doğa Olayları</title>
+    <link rel="stylesheet" href="~/css/hava.css" />
+    <link rel="stylesheet" href="~/gif/.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    
+
+    <script src="~/temalar/bookstore/js/jquery-1.11.0.min.js"></script>
+    <script src="~/temalar/bookstore/js/plugins.js"></script>
+    <script src="~/temalar/bookstore/js/script.js"></script>
+
+
+    <script src="~/temalar/bookstore/js/modernizr.js"></script>
+
+	<title>WhatsApp Simge</title>
+    <style>
+        body {
+            position: relative;
+        }
+        #whatsapp-icon {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 120px;
+            height: 120px;
+            cursor: pointer;
+        }
+  
+    </style>
+
+</head>
+<body>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+    
+        <div id="header">
+            <div id="logo">
+                    <img src="~/img/Logo2.png" title="Ekstrem Doğa Olayları" alt="Logo" />
+                    <div class="flashing"></div>
+             </div>
+             @* <div id="company-name">
+            FIRTINA AVCILARI
+             </div> *@
+        </div>
+
+    <!-- 
+    <div id="menu">
+        <a href="ana-sayfa.html">Ana Sayfa</a>
+        <a href="Galeri.html">Galeri</a>
+        <a href="iletisim.html">İletişim</a>
+	</div> 
+    -->
+    <div id=images>
+
+        <a id="whatsapp-link" href="https://web.whatsapp.com/" target="_blank">
+            <img id="whatsapp-icon" src="~/img/ww.png" alt="WhatsApp">
+
+        </a>
+    </div>
+
+    <div>
+        <a asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+        <a asp-area="" asp-controller="Gallery" asp-action="Index">Galeri</a>
+        <a asp-area="" asp-controller="Product" asp-action="Index">Ürünler</a>
+        <a asp-area="" asp-controller="Home" asp-action="About">Hakkımızda</a>
+        <a asp-area="" asp-controller="Home" asp-action="Contact">İletişim</a>
+        <a asp-controller="Favorite" asp-action="Index"><i class="fa fa-heart"></i> Favorilerim</a>
+        <a href="/Basket/Index/" class="cart for-buy"><i class="fa fa-shopping-cart"></i><span id="cart-count"> Sepetim (@ViewData["BasketCount"])</span></a>
+
+
+      @*   <a aap-asp-area="/Basket/Index/" asp-asp-controller="Basket" asp-action="Summary"> Sepetim</a> *@
+
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title=""><i class="fa fa-user"></i> Hesabım</a>
+
+    </div>
+
+    
+    <partial name="_LoginPartial" />
+
+        @RenderBody()
+
+
+	<div id="footer">
+        X Cad. Y Sok. Z Apt. No:78/13 Üsküdar/İSTANBUL<br>
+        <i class="fa fa-mobile" aria-hidden="true"></i> <a href="tel:+902162337890">+90 (216) 233 78 90</a> | 
+        <i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:info@vortexkitap.com.tr?subject=Soru İletişimi&body=Merhaba,%0AIlgilenmekte olduğum konu hakkında size bir sorum var.">info@dogadayız.com.tr</a> | 
+        <i class="fa fa-whatsapp" aria-hidden="true"></i> <a href="https://wa.me/905533456654">WhatsApp İletişim</a>
+        
+        <div style="margin-top:10px;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.7181136108647!2d29.01574807639291!3d41.00954261934635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab83ced2f26f3%3A0x9c4343ccba950d5d!2zU2VsaW1peWUsIEthdmFrIMSwc2tlbGUgQ2QuIE5vOjMwLCAzNDY2OCDDnHNrw7xkYXIvxLBzdGFuYnVs!5e0!3m2!1str!2str!4v1692876170934!5m2!1str!2str" width="50" height="10" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+    
+</body>
+</html>

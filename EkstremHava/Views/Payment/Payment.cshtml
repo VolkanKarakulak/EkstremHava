@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewData["Title"] = "Payment";
+}
+
+<h1>Ödeme</h1>
+
+<style>
+    body {
+       
+        justify-content: center;
+        align-items: center;
+      
+        margin: 0;
+    }
+
+
+    /* Form genelindeki ayarlar */
+    .creditly-card-form {
+        max-width: 100%; /* Formun maksimum genişliği */
+        margin: 0 auto; /* Formu ortala */
+        
+
+    /* Kart bilgisi giriş alanları */
+    .credit-card-wrapper {
+        padding: 40px; /* Kart bilgisi alanının iç boşluğu */
+        border: 5px solid #ddd; /* Sınır çizgisi */
+        border-radius: 10px; /* Köşeleri yuvarla */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Gölge efekti */
+    }
+
+    /* İsim giriş alanı */
+    .billing-address-name {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+    }
+
+    /* Kart numarası giriş alanı */
+    .credit-card-number {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+    }
+
+    /* CVV giriş alanı */
+    .security-code {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+    }
+
+    /* Son kullanma tarihi giriş alanı */
+    .expiration-month-and-year {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    /* Ödeme yap butonu */
+    .submit {
+        width: 100%;
+        padding: 1px;
+        background-color: #3498db; /* Arka plan rengi */
+        color: #fff; /* Metin rengi */
+        border: none; /* Sınır yok */
+        border-radius: 5px; /* Köşeleri yuvarla */
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s; /* Renk değişimi animasyonu */
+    }
+
+        /* Ödeme yap butonu üzerine gelindiğinde */
+        .submit:hover {
+            background-color: #2980b9; /* Arka plan rengi deği
+
+
+
+</style>
+
+<body>
+
+<div class="row">
+    <div class="pay_info">
+        <form asp-action="Payment" method="post" class="creditly-card-form agileinfo_form">
+            <section class="creditly-wrapper wthree, w3_agileits_wrapper">
+                <div class="credit-card-wrapper">
+                    <div class="first-row form-group">
+                        <div class="controls">
+                            <label class="control-label">Kart Üzerindeki İsim</label>
+                            <input class="billing-address-name form-control" type="text" name="name" placeholder="John Smith">
+                        </div>
+                        <div class="w3_agileits_card_number_grids">
+                            <div class="w3_agileits_card_number_grid_left">
+                                <div class="controls">
+                                    <label class="control-label">Kart Numarası</label>
+                                    <input class="number credit-card-number form-control" type="text" name="CardNumber" inputmode="numeric" autocomplete="cc-number"
+                                           autocompletetype="cc-number" x-autocompletetype="cc-number" placeholder="&#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149;">
+                                </div>
+                            </div>
+                            <div class="w3_agileits_card_number_grid_right">
+                                <div class="controls">
+                                    <label class="control-label">CVV</label>
+                                    <input class="security-code form-control" inputmode="numeric" type="text" name="CVV" placeholder="&#149;&#149;&#149;">
+                                </div>
+                            </div>
+                            <div class="clear"> </div>
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">Kartın Son Kullanım Tarihi</label>
+                                <input class="expiration-month-and-year form-control" type="text" name="ExpirationDate" placeholder="MM / YY">
+                        </div>
+                    </div>
+                    <button class="submit">
+                        <span>Ödeme Yap</span>
+                    </button>
+                </div>
+            </section>
+        </form>
+    </div>
+</div>
+
+</body>

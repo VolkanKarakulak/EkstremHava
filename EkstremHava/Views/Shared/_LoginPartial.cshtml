@@ -1,0 +1,161 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+
+<html lang="tr">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Fırtına Avcıları  |  Anasayfa</title>
+    <!-- Diğer head etiketleri buraya eklenecek -->
+    <style>
+        body {
+            background-color: #f8f9fa; /* Sayfa arka plan rengi */
+            color: #343a40; /* Sayfa metin rengi */
+        }
+
+        #menu {
+            background-color: #343a40; /* Sidebar arka plan rengi */
+            padding: 20px;
+            color: white; /* Sidebar metin rengi */
+        }
+
+        #admin-menu {
+            margin-top: 10px;
+        }
+
+            #admin-menu a {
+                color: darkred;
+                text-decoration: underline;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+        .content {
+            padding: 20px;
+        }
+
+        .navbar {
+            background-color: #2f2b29; /* Navbar arka plan rengi */
+        }
+
+        
+        .navbar-nav a {
+            color: #e0e1e1 !important; /* Navbar link metin rengi */
+            margin-right: 10px;
+        }
+
+        .navbar-nav a:hover{
+           color: orange !important;
+          /* Navbar link metin rengi */
+            
+        }
+
+        .navbar-nav .active a {
+            color: orange !important; /* Aktif sayfa link metin rengi */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <!-- Admin Menüsü -->
+                        @if (!SignInManager.IsSignedIn(User))
+                        {
+                           <li class="nav-item">
+                            <a class="nav-link" aria-haspopup="true" aria-expanded="false" asp-area="Identity" asp-page="/Account/Register">Üye Ol</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" aria-haspopup="true" aria-expanded="false" asp-area="Identity" asp-page="/Account/Login">Giriş</a>
+                            </li>
+                        }
+                        else
+                        {
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Yönetim Paneli
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="adminDropdown">
+                                        <a class="dropdown-item" asp-area="" asp-controller="ProductTypeAdmin" asp-action="Index">Ürün Türü Yönet</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="ProductAdmin" asp-action="Index">Ürün Yönet</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="GalleryPhotoAdmin" asp-action="Index">Galeri Yönet</a>
+                                    </div>
+                                </li>
+                            }
+                            else
+                            {
+                                
+                            }
+
+                            {  
+                             <li class="nav-item">
+                               <a class="nav-link" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Çıkış</a>
+                             </li>
+                            }
+                        }
+                    </ul>
+
+
+                    <script>
+                        function playThunderSound() {
+                            var audio = document.getElementById("thunder-audio");
+                            audio.pause();
+                            audio.muted = true; // Başlangıçta sesi kapalı yap
+                        }
+
+                        window.addEventListener("load", function () {
+                            playThunderSound();
+
+                            var audio = document.getElementById("thunder-audio");
+                            var soundButton = document.getElementById("toggle-sound-button");
+                            var isSoundOn = false;
+
+                            soundButton.addEventListener("mouseenter", function () {
+                                if (!isSoundOn) {
+                                    soundButton.title = "Sesi Aç";
+                                }
+
+                                else {
+                                    soundButton.title = "Sesi Kapat";
+                                }
+                            });
+
+                            function toggleSound() {
+                                if (isSoundOn) {
+                                    audio.pause();
+                                    isSoundOn = false;
+                                    soundButton.title = "Ses Kapalı";
+                                } else {
+                                    audio.play();
+                                    isSoundOn = true;
+                                    soundButton.title = "Ses Açık";
+                                }
+                            }
+
+                            soundButton.addEventListener("click", toggleSound);
+                        });
+
+                    </script>
+
+                </div>
+            </nav>
+
+            <!-- Ana İçerik Alanı -->
+           
+        </div>
+    </div>
+
+    <!-- Diğer Script ve Stillendirme dosyaları buraya gelecek -->
+
+</body>
+
+</html>

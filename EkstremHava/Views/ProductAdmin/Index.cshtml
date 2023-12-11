@@ -1,0 +1,62 @@
+﻿@model IEnumerable<EkstremHava.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/yönet.css" />
+
+<h4>Toplam @Model.Count() adet ürün bulunmaktadır.</h4> <br/>
+
+<p>
+    <a asp-action="Create" style="color: orange; font-weight: bold; font-size:18px;">Yeni Ürün Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageFileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price) TL
+            </td>
+            <td>
+                @* @Html.DisplayFor(modelItem => item.ImageFileName) *@
+                    <img src="\img\@item.ImageFileName" height="125" alt="@item.Name">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type.ProductTypeName)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProductId" class="edit-link">Düzenle</a> |
+                    <a asp-action="Details" asp-route-id="@item.ProductId" class="details-link">Detaylar</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProductId" class="delete-link">Sil</a>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

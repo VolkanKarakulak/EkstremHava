@@ -1,0 +1,53 @@
+﻿@page
+@model LogoutModel
+@{
+    ViewData["Title"] = "Çıkış";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy6YFp1hxFs1HJ8uuq9S+8J6U5K/iU+Zr" crossorigin="anonymous">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: black;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="display-4">@ViewData["Title"]</h1> <br/>
+        @{
+            if (User.Identity?.IsAuthenticated ?? false)
+            {
+                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                    <button type="submit" class="btn btn-primary">Çıkış yapmak için tıklayınız</button>
+                </form>
+            }
+            else
+            {
+                <p class="lead">You have successfully logged out of the application.</p>
+            }
+        }
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy6YFp1hxFs1HJ8uuq9S+8J6U5K/iU+Zr" crossorigin="anonymous"></script>
+</body>
+</html>
