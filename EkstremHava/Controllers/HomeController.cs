@@ -21,7 +21,7 @@ namespace EkstremHava.Controllers
 
         public IActionResult Index()
         {
-            List<Product>  newProducts = _db.Products.OrderByDescending(p => p.ProductId).Take(4).ToList();
+            List<Product>  newProducts = _db.Products.OrderByDescending(p => p.ProductId).Take(3).ToList();
 
             return View(newProducts);
         }

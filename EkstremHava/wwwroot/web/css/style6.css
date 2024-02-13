@@ -44,9 +44,9 @@ button#trigger-overlay {
     border: none;
     background: none;
     text-align: center;
-    color: #131415;
-	font-size: 1.2em;
-	cursor: pointer;
+    color: #ccc;
+    font-size: 1.2em;
+    cursor: pointer;
 }
 
 .search form input[type="search"] {
