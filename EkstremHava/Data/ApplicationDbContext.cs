@@ -23,12 +23,6 @@ namespace EkstremHava.Data
         public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<Payment> Payments { get; set; }
 
-
-
-
-
-
-
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
