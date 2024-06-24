@@ -23,7 +23,7 @@ namespace EkstremHava.Controllers
             List<Product> allProducts = _db.Products.OrderByDescending(p => p.ProductId).ToList();
 
             // Ürün türlerini al ve SelectList'e dönüştür
-            List<ProductType> productTypes = _db.ProductTypes.ToList(); // Burada doğru ProductType listesini almalısınız
+            List<ProductType> productTypes = _db.ProductTypes.ToList(); 
 
             if (filter.SelectedTypeId != 0)
             {
