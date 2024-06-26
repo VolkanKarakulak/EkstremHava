@@ -1,6 +1,5 @@
 ﻿@model EkstremHava.ViewModels.ProductFilterViewModel
 
-
 @ViewBag.basketCount
 
 <html>
@@ -45,7 +44,6 @@
 		}
 </script>
 
-
 	<script type="text/javascript">
 		async function addToFavorites(productId) {
             // AJAX ile sunucuya istek göndererek favorilere ekleme işlemini yapabilirsiniz.
@@ -61,8 +59,6 @@
             });
         }
     </script>
-
-
 
 </head>
 <body>
@@ -93,13 +89,11 @@ label {
     font-weight: bold;
 }
 
- 
      button[type="submit"] {
      
      height: 45px;
               
 }
-
 
 button[type="submit"]:hover {
      background-color: #575c61; /* İstenilen hover rengini belirleyin */
@@ -117,13 +111,10 @@ button[type="submit"]:hover {
     @if (Model.SelectedTypeId != 0)
     {
         <a class="back" href="/Product/Index/"><strong>Geri Dön</strong></a>
-        <br/>
-      
+        <br/>   
     }
 
-
     <br />
-
 
     <div class="popular-products-container">
         <div class="product-container row">
