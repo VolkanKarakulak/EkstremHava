@@ -1,0 +1,15 @@
+﻿.weather-info {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.weather-card {
+    text-align: center;
+}
+
+    .weather-card img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
+    }
